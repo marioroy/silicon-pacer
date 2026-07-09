@@ -1,0 +1,21 @@
+# Local LLM Models (Never commit heavy weights to Git)
+*.gguf
+*.bin
+models/
+~/models/
+
+# Python runtime artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V1
+.Spotlight-V100
+.Trashes
+
