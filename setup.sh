@@ -13,7 +13,7 @@ else
     exit 1
 fi
 
-echo "✅ Setup complete! Zero extra configurations or packages required."
+echo "✅ Setup complete! Zero extra configurations required."
 echo "--------------------------------------------------------"
 echo "To start pacing your llama-server instance, execute:"
 echo "  ./silicon_pacer.py"

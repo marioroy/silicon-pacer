@@ -19,9 +19,12 @@ Standard macOS power management does not offer granular, application-specific pr
 SiliconPacer hooks directly into native macOS kernel signals (`SIGSTOP` and `SIGCONT`) using direct `ctypes` system calls. It completely bypasses expensive shell forks (`ps`, `grep`, `kill`) to dynamically cycle target processes on the fly:
 
 *   **⏱️ Optimized Execution Ratio:** Cycles target PIDs through a strict **138ms RUN / 16ms PAUSE** duty-cycle window.
-*   **🌡️ Thermal Stabilization:** Forces a precise **89.6% execution ceiling**, stabilizing the SoC at a cool **~75°C** (with fans manually configured to 5,200 RPM). Note: A low RPM will not rid of the heat buildup at the center of the keyboard with prolong AI tasks. Try 3,800 ~ 6,200 RPM.
+*   **🌡️ Thermal Stabilization:** Forces a precise **92.0% execution ceiling**, stabilizing the SoC at a cool **~75°C** (with fans manually configured to 5,200 RPM). Note: A low RPM will not rid of the heat buildup at the center of the keyboard with prolong AI tasks. Try 3,800 ~ 6,200 RPM.
 *   **🛠️ QoS Downgrading:** Automatically wrapper-boots itself into the macOS `utility` Quality of Service tier via `taskpolicy -c utility` to optimize background efficiency.
 *   **🧠 Real-Time PID Tracking:** Safely catches model reloads and `llama-server` restarts via direct, in-process C-buffer lookups.
+*   **🧠 Dynamic Pause:** Further throttles the process upon reaching **72°C** by pausing **12ms, 72°C** ~ **48ms, 85°C+**.
+
+In a Nutshell: Set your fans to your comfort level running llama-server.
 
 ---
 
@@ -75,10 +78,15 @@ SiliconPacer requires no external pip packages, relying exclusively on standard 
 ### 📋 System Requirements
 *   **Operating System:** macOS 12.0 (Monterey) or higher (OS check enforced at runtime).
 *   **Hardware Dependency:** Designed for Apple Silicon MacBooks (M-Series Max/Pro/Base).
+*   **Software Dependency:** [iSMC CLI](https://github.com/dkorunic/iSMC) to read/decode temperature.
 
-### 1. Make the Script Executable
+### 1. Make the Script Executable and Install iSMC via Homebrew (brew)
 ```bash
 chmod +x silicon_pacer.py
+
+brew tap dkorunic/tap
+brew trust dkorunic/tap
+brew install ismc
 ```
 
 ### 2. Standard Launch (Targeting llama-server)

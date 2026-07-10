@@ -19,3 +19,6 @@ __pycache__/
 .Spotlight-V100
 .Trashes
 
+# Other files
+*.swp
+

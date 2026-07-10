@@ -1,6 +1,13 @@
 # Changelog
 
-## - 2026-07-09
+## - 2026-07-09 v1.0.1
+
+### ✨ Key Features
+*   **Precision Hardware Gating:** Stabilizes the SoC at an optimal **~75°C** ~ **~85°C** by executing a low-latency **138ms RUN / 12ms PAUSE** loop (92.0% active duty cycle).
+*   **Dynamic Pause:** Further throttles the process upon reaching **72°C** by pausing **12ms, 72°C** ~ **48ms, 85°C+**.
+*   **Software Requirement:** Uses [iSMC CLI](https://github.com/dkorunic/iSMC) to read/decode temperature.
+
+## - 2026-07-09 v1.0.0
 
 ### 🚀 SiliconPacer Launch
 Initial production release of **SiliconPacer**, a lean, zero-dependency background thermal pacing utility tailored for Apple Silicon MacBooks running sustained local AI matrix workloads (such as `llama-server`). 
